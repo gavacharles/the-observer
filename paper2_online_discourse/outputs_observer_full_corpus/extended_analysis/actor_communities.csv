@@ -1,0 +1,24 @@
+actor,community,actor_type
+Court,0,Judiciary
+Police,0,Coercive State
+IGG,0,Oversight Body
+Ministry of Finance,0,State Executive
+EACOP,0,Private / Commercial
+Ministry of Health,0,State Executive
+Government,0,State Executive
+Parliament,0,Legislature
+President Museveni,0,State Executive
+NEMA,0,Oversight Body
+Ministry of Education,0,State Executive
+Ministry of Works,1,State Executive
+NWSC,1,Infrastructure Agency
+UNRA,1,Infrastructure Agency
+NSSF,1,Financial Institution
+PPDA,1,Oversight Body
+URA,1,Oversight Body
+KCCA,1,State Executive
+UEGCL,2,Infrastructure Agency
+Umeme/ERA,2,Utility / Infrastructure
+World Bank,2,International / Donor
+Umeme,2,Utility / Infrastructure
+Ministry of Energy,2,State Executive

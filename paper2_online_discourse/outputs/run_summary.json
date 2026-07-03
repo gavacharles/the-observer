@@ -1,0 +1,17 @@
+{
+  "articles_collected": 27,
+  "articles_raw": 42,
+  "relevant_sentences": 127,
+  "final_categories": [
+    "contract_management_failure",
+    "delay_time_overrun",
+    "governance_oversight_failure",
+    "land_row_dispute",
+    "procurement_irregularity",
+    "quality_technical_defect"
+  ],
+  "date_range": {
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  }
+}

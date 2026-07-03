@@ -1,0 +1,25 @@
+month,source,pred_final,count
+2016-11,The Observer,land_row_dispute,29
+2016-11,The Observer,procurement_irregularity,6
+2016-11,The Observer,quality_technical_defect,4
+2016-11,The Observer,contract_management_failure,2
+2016-11,The Observer,delay_time_overrun,2
+2016-11,The Observer,governance_oversight_failure,2
+2016-12,The Observer,land_row_dispute,260
+2016-12,The Observer,procurement_irregularity,57
+2016-12,The Observer,delay_time_overrun,44
+2016-12,The Observer,contract_management_failure,28
+2016-12,The Observer,governance_oversight_failure,24
+2016-12,The Observer,quality_technical_defect,8
+2026-03,The Observer,land_row_dispute,23
+2026-03,The Observer,procurement_irregularity,3
+2026-03,The Observer,delay_time_overrun,2
+2026-03,The Observer,contract_management_failure,1
+2026-04,New Vision,land_row_dispute,46
+2026-04,New Vision,procurement_irregularity,18
+2026-04,New Vision,delay_time_overrun,3
+2026-04,New Vision,quality_technical_defect,3
+2026-04,New Vision,contract_management_failure,1
+2026-04,The Observer,land_row_dispute,21
+2026-04,The Observer,procurement_irregularity,4
+2026-04,The Observer,delay_time_overrun,2

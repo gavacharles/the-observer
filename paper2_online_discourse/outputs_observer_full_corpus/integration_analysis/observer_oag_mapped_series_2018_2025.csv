@@ -1,0 +1,9 @@
+year,obs_procurement_irregularity,obs_contract_management_failure,obs_governance_oversight_failure,obs_land_row_dispute,obs_payment_financial_dispute,oag_procurement_irregularities,oag_contract_management,oag_governance_and_controls,oag_land_and_right_of_way,oag_financial_claims_payments
+2018,125,58,77,1214,50,15.0,2.0,2.0,6.0,4.0
+2019,105,72,47,954,54,38.0,9.0,2.0,6.0,13.0
+2020,133,69,78,1472,61,18.0,0.0,5.0,0.0,0.0
+2021,204,84,120,1602,93,26.0,0.0,0.0,0.0,3.0
+2022,183,96,96,1719,50,25.0,2.0,2.0,0.0,3.0
+2023,124,109,117,1371,55,30.0,3.0,5.0,2.0,4.0
+2024,174,130,136,1606,60,45.0,5.0,5.0,1.0,7.0
+2025,190,125,159,1718,47,40.0,2.0,2.0,4.0,5.0

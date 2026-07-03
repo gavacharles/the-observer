@@ -1,0 +1,158 @@
+{
+  "period": "2016-2025",
+  "relevant_sentences": 24237,
+  "relevant_articles": 3242,
+  "top_drivers": [
+    {
+      "driver": "land_row_dispute",
+      "count_total": 15173,
+      "count_2016": 273,
+      "count_2025": 1718,
+      "slope_per_year": 28.781818181818185,
+      "r_value": 0.11623391303927948,
+      "p_value": 0.7491457161207018,
+      "pct_change_2016_to_2025": 529.3040293040293,
+      "trend_label": "stable/mixed"
+    },
+    {
+      "driver": "delay_time_overrun",
+      "count_total": 3514,
+      "count_2016": 50,
+      "count_2025": 430,
+      "slope_per_year": 13.236363636363636,
+      "r_value": 0.244983256878581,
+      "p_value": 0.49512053531979394,
+      "pct_change_2016_to_2025": 760.0,
+      "trend_label": "stable/mixed"
+    },
+    {
+      "driver": "procurement_irregularity",
+      "count_total": 1555,
+      "count_2016": 34,
+      "count_2025": 190,
+      "slope_per_year": 5.703030303030303,
+      "r_value": 0.25695899131004024,
+      "p_value": 0.4735691294634562,
+      "pct_change_2016_to_2025": 458.8235294117647,
+      "trend_label": "stable/mixed"
+    },
+    {
+      "driver": "quality_technical_defect",
+      "count_total": 1475,
+      "count_2016": 16,
+      "count_2025": 184,
+      "slope_per_year": 1.2787878787878788,
+      "r_value": 0.05327806351756574,
+      "p_value": 0.8837844942215889,
+      "pct_change_2016_to_2025": 1050.0,
+      "trend_label": "stable/mixed"
+    },
+    {
+      "driver": "governance_oversight_failure",
+      "count_total": 1045,
+      "count_2016": 11,
+      "count_2025": 159,
+      "slope_per_year": 7.545454545454546,
+      "r_value": 0.41076124931913754,
+      "p_value": 0.23833453500519253,
+      "pct_change_2016_to_2025": 1345.4545454545455,
+      "trend_label": "stable/mixed"
+    }
+  ],
+  "top_actors": [
+    {
+      "actor": "Government",
+      "article_mentions": 2133
+    },
+    {
+      "actor": "Court",
+      "article_mentions": 835
+    },
+    {
+      "actor": "Parliament",
+      "article_mentions": 688
+    },
+    {
+      "actor": "President Museveni",
+      "article_mentions": 645
+    },
+    {
+      "actor": "Police",
+      "article_mentions": 614
+    },
+    {
+      "actor": "KCCA",
+      "article_mentions": 333
+    },
+    {
+      "actor": "Umeme/ERA",
+      "article_mentions": 216
+    },
+    {
+      "actor": "Ministry of Finance",
+      "article_mentions": 209
+    },
+    {
+      "actor": "UNRA",
+      "article_mentions": 169
+    },
+    {
+      "actor": "Ministry of Education",
+      "article_mentions": 167
+    }
+  ],
+  "top_locations": [
+    {
+      "location": "Kampala",
+      "article_mentions": 949,
+      "region": "Central"
+    },
+    {
+      "location": "Kenya",
+      "article_mentions": 292,
+      "region": "Cross-border"
+    },
+    {
+      "location": "Entebbe",
+      "article_mentions": 259,
+      "region": "Central"
+    },
+    {
+      "location": "Jinja",
+      "article_mentions": 210,
+      "region": "Eastern"
+    },
+    {
+      "location": "Tanzania",
+      "article_mentions": 183,
+      "region": "Cross-border"
+    },
+    {
+      "location": "Gulu",
+      "article_mentions": 164,
+      "region": "Northern"
+    },
+    {
+      "location": "Mukono",
+      "article_mentions": 154,
+      "region": "Central"
+    },
+    {
+      "location": "Wakiso",
+      "article_mentions": 148,
+      "region": "Central"
+    },
+    {
+      "location": "Hoima",
+      "article_mentions": 139,
+      "region": "Western"
+    },
+    {
+      "location": "Nile",
+      "article_mentions": 132,
+      "region": "National Corridor"
+    }
+  ],
+  "money_mentions_count": 4347,
+  "total_mentioned_money_ugx": 8284524930717959.0
+}

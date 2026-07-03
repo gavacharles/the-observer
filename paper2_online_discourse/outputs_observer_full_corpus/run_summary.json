@@ -1,0 +1,76 @@
+{
+  "source": "The Observer",
+  "year_range": "2015\u20132025",
+  "run_timestamp": "2026-04-13T14:08:32.526833",
+  "total_sitemap_urls": 32117,
+  "prefiltered_urls": 5796,
+  "url_filter_used": true,
+  "articles_downloaded": 5530,
+  "articles_relevant": 3242,
+  "total_sentences": 134573,
+  "relevant_sentences": 24237,
+  "sentence_relevance_rate": 0.18,
+  "final_categories": [
+    "contract_management_failure",
+    "delay_time_overrun",
+    "governance_oversight_failure",
+    "land_row_dispute",
+    "payment_financial_dispute",
+    "procurement_irregularity",
+    "quality_technical_defect"
+  ],
+  "category_counts": {
+    "land_row_dispute": 15173,
+    "delay_time_overrun": 3514,
+    "procurement_irregularity": 1555,
+    "quality_technical_defect": 1475,
+    "governance_oversight_failure": 1045,
+    "contract_management_failure": 898,
+    "payment_financial_dispute": 577
+  },
+  "articles_per_year": {
+    "2016": 80,
+    "2017": 1120,
+    "2018": 478,
+    "2019": 474,
+    "2020": 495,
+    "2021": 582,
+    "2022": 619,
+    "2023": 566,
+    "2024": 534,
+    "2025": 582
+  },
+  "relevant_articles_per_year": {
+    "2016": 49,
+    "2017": 669,
+    "2018": 269,
+    "2019": 252,
+    "2020": 262,
+    "2021": 333,
+    "2022": 361,
+    "2023": 343,
+    "2024": 322,
+    "2025": 382
+  },
+  "relevant_sentences_per_year": {
+    "2016": 401,
+    "2017": 4938,
+    "2018": 1935,
+    "2019": 1607,
+    "2020": 2266,
+    "2021": 2725,
+    "2022": 2690,
+    "2023": 2281,
+    "2024": 2541,
+    "2025": 2853
+  },
+  "outputs": {
+    "all_sitemap_urls": "all_sitemap_urls.csv",
+    "prefiltered_urls": "prefiltered_urls.csv",
+    "articles_raw": "articles_raw.csv",
+    "articles_relevant": "articles_relevant.csv",
+    "sentences_classified": "sentences_classified.csv",
+    "monthly_dispute_signals": "monthly_dispute_signals.csv",
+    "semantic_dataset": "semantic_dataset.csv"
+  }
+}

@@ -1,0 +1,6 @@
+mapped_domain,F_stat_lag1,p_value_lag1,beta_news_lag1,n_years,note
+procurement,0.00021542788118061057,0.9889923977691082,-0.0019120450934720257,8,Exploratory lag-1 test on annual series; low power due to n=8
+contract_management,0.05339538342953381,0.8285954117493479,-0.014217151894536229,8,Exploratory lag-1 test on annual series; low power due to n=8
+governance,0.03543695986321338,0.859847420458943,-0.006147010138176054,8,Exploratory lag-1 test on annual series; low power due to n=8
+land,14.917493202332839,0.018111483250501825,0.017188017830337507,8,Exploratory lag-1 test on annual series; low power due to n=8
+financial,0.8916714219945233,0.39849246650756676,-0.11360865961285299,8,Exploratory lag-1 test on annual series; low power due to n=8

@@ -1,0 +1,14 @@
+{
+  "articles_with_sector": 2053,
+  "top_sector": "Roads/Transport",
+  "num_actor_communities": 3,
+  "community_sizes": [
+    11,
+    7,
+    5
+  ],
+  "dispute_cooccurrence_top_pair": [
+    "Land / RoW Dispute",
+    "Delay / Time Overrun"
+  ]
+}

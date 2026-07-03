@@ -1,0 +1,233 @@
+source,target,weight
+Court,Government,619
+Government,Parliament,579
+Government,President Museveni,559
+Government,Police,394
+Court,Parliament,261
+Court,Police,261
+Parliament,President Museveni,251
+Court,President Museveni,215
+Government,Ministry of Finance,196
+Government,KCCA,169
+Police,President Museveni,165
+Government,Umeme/ERA,154
+Parliament,Police,151
+Government,Ministry of Education,135
+Government,World Bank,128
+Government,UNRA,128
+Umeme,Umeme/ERA,115
+Government,Ministry of Health,110
+Ministry of Finance,Parliament,108
+Government,Ministry of Energy,106
+Government,URA,105
+Government,IGG,96
+Government,Umeme,87
+KCCA,Police,79
+Court,KCCA,78
+Government,Ministry of Works,77
+Ministry of Finance,President Museveni,70
+KCCA,URA,58
+Court,Ministry of Finance,56
+Court,IGG,54
+KCCA,Parliament,53
+Court,UNRA,52
+KCCA,President Museveni,52
+EACOP,Government,52
+Court,URA,50
+Government,NSSF,50
+President Museveni,UNRA,48
+Parliament,UNRA,48
+Parliament,URA,48
+Ministry of Education,President Museveni,46
+Government,NEMA,45
+Ministry of Energy,President Museveni,38
+President Museveni,URA,38
+Government,PPDA,38
+President Museveni,World Bank,38
+Parliament,Umeme/ERA,37
+President Museveni,Umeme/ERA,37
+Ministry of Health,Parliament,36
+IGG,Parliament,35
+IGG,President Museveni,34
+Parliament,World Bank,33
+Ministry of Energy,Umeme/ERA,32
+Ministry of Finance,URA,31
+Ministry of Works,Parliament,30
+Government,UEGCL,30
+Court,Umeme/ERA,30
+Ministry of Education,Parliament,30
+Ministry of Finance,Police,30
+Ministry of Energy,Parliament,28
+Police,URA,27
+KCCA,UNRA,26
+Ministry of Finance,Ministry of Health,26
+Police,UNRA,26
+Court,Ministry of Health,26
+Court,Ministry of Works,25
+Parliament,Umeme,25
+Ministry of Health,President Museveni,25
+IGG,Police,24
+Umeme/ERA,World Bank,24
+Police,Umeme/ERA,24
+Ministry of Works,UNRA,23
+Court,NSSF,23
+KCCA,Ministry of Finance,22
+Court,Ministry of Energy,22
+Court,World Bank,21
+President Museveni,Umeme,21
+NSSF,Parliament,20
+NSSF,President Museveni,19
+Government,NWSC,19
+Ministry of Finance,UNRA,19
+Ministry of Energy,Umeme,19
+Ministry of Works,Police,19
+EACOP,President Museveni,18
+Ministry of Health,Police,18
+KCCA,World Bank,17
+IGG,UNRA,17
+Court,NEMA,17
+Court,EACOP,17
+Ministry of Education,Police,17
+Ministry of Finance,World Bank,17
+Ministry of Works,President Museveni,17
+Police,World Bank,16
+NEMA,Parliament,16
+NEMA,Police,16
+NSSF,URA,16
+Court,Ministry of Education,16
+Police,Umeme,16
+UNRA,World Bank,16
+Ministry of Energy,Ministry of Finance,15
+Umeme,World Bank,14
+Court,Umeme,14
+Ministry of Energy,UEGCL,14
+Ministry of Education,World Bank,14
+IGG,Ministry of Finance,14
+PPDA,Parliament,14
+UNRA,URA,13
+Ministry of Finance,Ministry of Works,13
+NEMA,President Museveni,13
+Court,PPDA,13
+PPDA,President Museveni,12
+EACOP,Ministry of Energy,12
+UEGCL,Umeme/ERA,12
+EACOP,Parliament,11
+Ministry of Finance,PPDA,11
+KCCA,Ministry of Works,11
+UEGCL,Umeme,11
+Ministry of Finance,Umeme/ERA,10
+Ministry of Health,Umeme/ERA,10
+Ministry of Finance,Umeme,10
+NSSF,Umeme/ERA,10
+NWSC,Police,10
+KCCA,NSSF,10
+Ministry of Education,Ministry of Health,10
+Ministry of Works,World Bank,10
+Ministry of Finance,NSSF,10
+NSSF,Police,9
+EACOP,NEMA,9
+NSSF,Umeme,9
+URA,Umeme/ERA,9
+KCCA,NEMA,9
+IGG,NSSF,9
+Ministry of Education,Ministry of Finance,9
+KCCA,NWSC,9
+IGG,KCCA,8
+Ministry of Energy,URA,8
+KCCA,Umeme/ERA,8
+Ministry of Energy,World Bank,8
+Ministry of Energy,Police,8
+URA,World Bank,8
+Ministry of Finance,UEGCL,8
+Ministry of Health,World Bank,8
+Ministry of Works,URA,8
+Ministry of Health,Umeme,8
+IGG,URA,7
+Parliament,UEGCL,7
+KCCA,Ministry of Education,7
+President Museveni,UEGCL,7
+KCCA,Ministry of Health,7
+Ministry of Energy,UNRA,7
+NWSC,UNRA,6
+NSSF,World Bank,6
+PPDA,UNRA,6
+Ministry of Finance,NWSC,6
+KCCA,PPDA,6
+NWSC,Parliament,6
+NEMA,UNRA,6
+IGG,PPDA,5
+Court,NWSC,5
+PPDA,World Bank,5
+UEGCL,World Bank,5
+PPDA,URA,5
+Ministry of Energy,NEMA,5
+URA,Umeme,4
+Ministry of Health,Ministry of Works,4
+EACOP,World Bank,4
+NWSC,Umeme/ERA,4
+NWSC,Umeme,4
+Ministry of Works,PPDA,4
+Ministry of Health,URA,4
+Ministry of Finance,NEMA,4
+PPDA,Police,4
+Court,UEGCL,4
+NSSF,UNRA,4
+Ministry of Health,PPDA,3
+Ministry of Works,Umeme/ERA,3
+KCCA,Ministry of Energy,3
+EACOP,Ministry of Works,3
+EACOP,Umeme/ERA,3
+IGG,Ministry of Works,3
+Ministry of Works,UEGCL,3
+NEMA,Umeme/ERA,3
+IGG,NEMA,3
+NWSC,President Museveni,3
+NWSC,World Bank,3
+KCCA,Umeme,3
+Ministry of Education,URA,3
+UEGCL,UNRA,3
+EACOP,Ministry of Health,2
+EACOP,Police,2
+Ministry of Education,Ministry of Energy,2
+Ministry of Works,Umeme,2
+Ministry of Education,Umeme/ERA,2
+Ministry of Energy,Ministry of Works,2
+Ministry of Education,Ministry of Works,2
+EACOP,Umeme,2
+Ministry of Works,NEMA,2
+Ministry of Health,UNRA,2
+Ministry of Education,UNRA,2
+IGG,Ministry of Education,2
+Ministry of Health,NWSC,2
+Ministry of Education,NEMA,2
+NWSC,URA,2
+IGG,Ministry of Energy,2
+UEGCL,URA,2
+Ministry of Health,UEGCL,2
+PPDA,Umeme/ERA,2
+IGG,World Bank,2
+NSSF,PPDA,2
+PPDA,Umeme,1
+NSSF,UEGCL,1
+PPDA,UEGCL,1
+Ministry of Energy,NSSF,1
+Ministry of Energy,Ministry of Health,1
+Ministry of Energy,PPDA,1
+EACOP,NSSF,1
+Ministry of Health,NSSF,1
+Ministry of Education,NSSF,1
+Police,UEGCL,1
+NSSF,NWSC,1
+UNRA,Umeme/ERA,1
+Ministry of Health,NEMA,1
+EACOP,Ministry of Education,1
+Ministry of Education,PPDA,1
+NEMA,Umeme,1
+IGG,Umeme/ERA,1
+EACOP,UEGCL,1
+NEMA,NSSF,1
+EACOP,Ministry of Finance,1
+IGG,Ministry of Health,1
+IGG,UEGCL,1
+NEMA,URA,1
+EACOP,UNRA,1

@@ -1,0 +1,86 @@
+{
+  "period": "2018-2025",
+  "n_observer_sentences": 18898,
+  "n_oag_years": 8,
+  "correlation_table": [
+    {
+      "mapped_domain": "procurement",
+      "pearson_r_same_year": 0.22104231939277794,
+      "p_value_same_year": 0.5988478468617285,
+      "pearson_r_news_lag1_to_oag": -0.004024728484948649,
+      "p_value_news_lag1_to_oag": 0.9931674640533784
+    },
+    {
+      "mapped_domain": "contract_management",
+      "pearson_r_same_year": 0.08512732219090971,
+      "p_value_same_year": 0.8411557055533518,
+      "pearson_r_news_lag1_to_oag": -0.14866519548381193,
+      "p_value_news_lag1_to_oag": 0.7503978438866763
+    },
+    {
+      "mapped_domain": "governance",
+      "pearson_r_same_year": 0.055943424279834356,
+      "p_value_same_year": 0.895324729333502,
+      "pearson_r_news_lag1_to_oag": -0.127041610538765,
+      "p_value_news_lag1_to_oag": 0.7860636729949657
+    },
+    {
+      "mapped_domain": "land",
+      "pearson_r_same_year": -0.7064021632752744,
+      "p_value_same_year": 0.05015621089899412,
+      "pearson_r_news_lag1_to_oag": 0.016308489265542236,
+      "p_value_news_lag1_to_oag": 0.9723175303882406
+    },
+    {
+      "mapped_domain": "financial",
+      "pearson_r_same_year": -0.21647652269323536,
+      "p_value_same_year": 0.6066089235445006,
+      "pearson_r_news_lag1_to_oag": -0.3180248080250456,
+      "p_value_news_lag1_to_oag": 0.48698743696370395
+    }
+  ],
+  "causality_table": [
+    {
+      "mapped_domain": "procurement",
+      "F_stat_lag1": 0.00021542788118061057,
+      "p_value_lag1": 0.9889923977691082,
+      "beta_news_lag1": -0.0019120450934720257,
+      "n_years": 8,
+      "note": "Exploratory lag-1 test on annual series; low power due to n=8"
+    },
+    {
+      "mapped_domain": "contract_management",
+      "F_stat_lag1": 0.05339538342953381,
+      "p_value_lag1": 0.8285954117493479,
+      "beta_news_lag1": -0.014217151894536229,
+      "n_years": 8,
+      "note": "Exploratory lag-1 test on annual series; low power due to n=8"
+    },
+    {
+      "mapped_domain": "governance",
+      "F_stat_lag1": 0.03543695986321338,
+      "p_value_lag1": 0.859847420458943,
+      "beta_news_lag1": -0.006147010138176054,
+      "n_years": 8,
+      "note": "Exploratory lag-1 test on annual series; low power due to n=8"
+    },
+    {
+      "mapped_domain": "land",
+      "F_stat_lag1": 14.917493202332839,
+      "p_value_lag1": 0.018111483250501825,
+      "beta_news_lag1": 0.017188017830337507,
+      "n_years": 8,
+      "note": "Exploratory lag-1 test on annual series; low power due to n=8"
+    },
+    {
+      "mapped_domain": "financial",
+      "F_stat_lag1": 0.8916714219945233,
+      "p_value_lag1": 0.39849246650756676,
+      "beta_news_lag1": -0.11360865961285299,
+      "n_years": 8,
+      "note": "Exploratory lag-1 test on annual series; low power due to n=8"
+    }
+  ],
+  "network_nodes": 7,
+  "network_edges": 21
+}

@@ -1,0 +1,60 @@
+{
+  "Community_1": {
+    "members": [
+      "Court",
+      "Police",
+      "IGG",
+      "Ministry of Finance",
+      "EACOP",
+      "Ministry of Health",
+      "Government",
+      "Parliament",
+      "President Museveni",
+      "NEMA",
+      "Ministry of Education"
+    ],
+    "actor_types": [
+      "Coercive State",
+      "Judiciary",
+      "Legislature",
+      "Oversight Body",
+      "Private / Commercial",
+      "State Executive"
+    ],
+    "size": 11
+  },
+  "Community_2": {
+    "members": [
+      "Ministry of Works",
+      "NWSC",
+      "UNRA",
+      "NSSF",
+      "PPDA",
+      "URA",
+      "KCCA"
+    ],
+    "actor_types": [
+      "Financial Institution",
+      "Infrastructure Agency",
+      "Oversight Body",
+      "State Executive"
+    ],
+    "size": 7
+  },
+  "Community_3": {
+    "members": [
+      "UEGCL",
+      "Umeme/ERA",
+      "World Bank",
+      "Umeme",
+      "Ministry of Energy"
+    ],
+    "actor_types": [
+      "Infrastructure Agency",
+      "International / Donor",
+      "State Executive",
+      "Utility / Infrastructure"
+    ],
+    "size": 5
+  }
+}

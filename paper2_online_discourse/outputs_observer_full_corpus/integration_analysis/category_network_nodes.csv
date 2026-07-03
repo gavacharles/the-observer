@@ -1,0 +1,8 @@
+node,degree_centrality,betweenness_centrality,eigenvector_centrality
+land_row_dispute,1.0,0.0,0.5564255061972091
+delay_time_overrun,1.0,0.0,0.4988876891908648
+procurement_irregularity,1.0,0.0,0.3755265969196747
+quality_technical_defect,1.0,0.0,0.3440458474434827
+governance_oversight_failure,1.0,0.0,0.3133214151556715
+contract_management_failure,1.0,0.0,0.23203111813051708
+payment_financial_dispute,1.0,0.6,0.17350853153015833

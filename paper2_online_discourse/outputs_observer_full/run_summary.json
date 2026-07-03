@@ -1,0 +1,44 @@
+{
+  "source": "The Observer",
+  "year_range": "2016\u20132026",
+  "articles_raw": 844,
+  "articles_collected": 404,
+  "relevant_sentences": 1642,
+  "final_categories": [
+    "contract_management_failure",
+    "delay_time_overrun",
+    "governance_oversight_failure",
+    "land_row_dispute",
+    "payment_financial_dispute",
+    "procurement_irregularity",
+    "quality_technical_defect"
+  ],
+  "articles_per_year": {
+    "2015": 1,
+    "2016": 78,
+    "2017": 79,
+    "2018": 77,
+    "2019": 77,
+    "2020": 75,
+    "2021": 74,
+    "2022": 75,
+    "2023": 83,
+    "2024": 76,
+    "2025": 73,
+    "2026": 76
+  },
+  "collected_per_year": {
+    "2015": 1,
+    "2016": 51,
+    "2017": 40,
+    "2018": 33,
+    "2019": 35,
+    "2020": 28,
+    "2021": 30,
+    "2022": 38,
+    "2023": 34,
+    "2024": 31,
+    "2025": 41,
+    "2026": 42
+  }
+}

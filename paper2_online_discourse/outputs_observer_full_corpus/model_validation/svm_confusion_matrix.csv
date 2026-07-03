@@ -1,0 +1,7 @@
+,contract_management_failure,delay_time_overrun,governance_oversight_failure,land_row_dispute,procurement_irregularity,quality_technical_defect
+contract_management_failure,27,1,0,3,2,0
+delay_time_overrun,1,222,1,11,2,1
+governance_oversight_failure,0,3,47,8,1,0
+land_row_dispute,2,17,2,700,1,2
+procurement_irregularity,1,1,2,6,57,1
+quality_technical_defect,0,2,0,8,1,54

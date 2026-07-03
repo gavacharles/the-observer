@@ -1,0 +1,36 @@
+{
+  "dataset_rows_after_conf_filter": 5933,
+  "classes": [
+    "contract_management_failure",
+    "delay_time_overrun",
+    "governance_oversight_failure",
+    "land_row_dispute",
+    "procurement_irregularity",
+    "quality_technical_defect"
+  ],
+  "class_counts": {
+    "land_row_dispute": 3620,
+    "delay_time_overrun": 1187,
+    "procurement_irregularity": 338,
+    "quality_technical_defect": 325,
+    "governance_oversight_failure": 297,
+    "contract_management_failure": 166
+  },
+  "svm": {
+    "test_accuracy": 0.932603201347936,
+    "test_f1_macro": 0.8847569120768138,
+    "test_f1_weighted": 0.9319168587007635,
+    "cv_f1_macro_mean": 0.8504830599712099,
+    "cv_f1_macro_std": 0.007768813520967006
+  },
+  "factor_analysis": {
+    "test_accuracy": 0.5627632687447346,
+    "test_f1_macro": 0.4677367352092084,
+    "test_f1_weighted": 0.5865515135367287,
+    "cv_f1_macro_mean": 0.40047303308031507,
+    "cv_f1_macro_std": 0.020324358358952174,
+    "svd_components": 180,
+    "factor_components": 30,
+    "svd_explained_variance_sum": 0.2376045865977189
+  }
+}

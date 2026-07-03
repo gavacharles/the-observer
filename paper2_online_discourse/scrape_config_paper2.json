@@ -1,0 +1,214 @@
+{
+  "request_sleep_seconds": 1.2,
+  "sources": [
+    {
+      "name": "The Observer",
+      "base_url": "https://observer.ug",
+      "allowed_url_keywords": [
+        "/news/",
+        "/business/"
+      ],
+      "feed_urls": [
+        "https://observer.ug/category/news/",
+        "https://observer.ug/category/business/",
+        "https://observer.ug/sitemap_index.xml",
+        "https://observer.ug/news-sitemap.xml"
+      ],
+      "article_selector": "div[itemprop='articleBody'], div.articleBody, div.blog-content",
+      "date_selector": "time, span.published, span.date",
+      "title_selector": "h1"
+    },
+    {
+      "name": "New Vision",
+      "base_url": "https://www.newvision.co.ug",
+      "allowed_url_keywords": [
+        "/category/news/",
+        "/category/business/",
+        "/category/agriculture/",
+        "/category/blogs/"
+      ],
+      "feed_urls": [
+        "https://www.newvision.co.ug/category/news?id=4",
+        "https://www.newvision.co.ug/category/business?id=3",
+        "https://www.newvision.co.ug/archives",
+        "https://www.newvision.co.ug/sitemap.xml"
+      ],
+      "article_selector": "article, div.article-content, div[itemprop='articleBody']",
+      "date_selector": "time, span.date, div.published",
+      "title_selector": "h1"
+    },
+    {
+      "name": "Daily Monitor",
+      "base_url": "https://www.monitor.co.ug",
+      "allowed_url_keywords": [
+        "/uganda/news",
+        "/uganda/business"
+      ],
+      "feed_urls": [
+        "https://www.monitor.co.ug/",
+        "https://www.monitor.co.ug/uganda/news",
+        "https://www.monitor.co.ug/uganda/business"
+      ],
+      "article_selector": "article, div.story-content, div[itemprop='articleBody']",
+      "date_selector": "time, span.date, p.date",
+      "title_selector": "h1"
+    }
+  ],
+  "infrastructure_terms": [
+    "infrastructure",
+    "construction",
+    "contractor",
+    "bridge",
+    "railway",
+    "standard gauge railway",
+    "sgr",
+    "dam",
+    "hydropower",
+    "transmission line",
+    "substation",
+    "pipeline",
+    "water project",
+    "public works",
+    "road project",
+    "expressway",
+    "bypass",
+    "airport",
+    "stadium",
+    "plant",
+    "refinery",
+    "factory",
+    "industrial park",
+    "oil region",
+    "oil project",
+    "mining site",
+    "site restoration",
+    "walkway",
+    "drainage",
+    "streetlights",
+    "civil works",
+    "engineering works"
+  ],
+  "construction_process_terms": [
+    "project",
+    "under construction",
+    "rehabilitation",
+    "upgrade works",
+    "commissioned",
+    "completion",
+    "refurbishment",
+    "restoration",
+    "abandoned",
+    "excavated",
+    "implementation",
+    "site",
+    "works",
+    "contract",
+    "tender",
+    "procurement"
+  ],
+  "risk_terms": [
+    "delay",
+    "time overrun",
+    "claim",
+    "dispute",
+    "arbitration",
+    "litigation",
+    "compensation",
+    "right of way",
+    "variation",
+    "overpayment",
+    "substandard",
+    "mismanagement",
+    "non compliance",
+    "irregularity",
+    "breach",
+    "eviction",
+    "resettlement",
+    "quality defect",
+    "budget overrun",
+    "unpaid"
+  ],
+  "category_keywords": {
+    "procurement_irregularity": [
+      "single source",
+      "non competitive",
+      "irregular tender",
+      "procurement",
+      "bid rigging",
+      "contract award"
+    ],
+    "delay_time_overrun": [
+      "delay",
+      "behind schedule",
+      "time overrun",
+      "extension of time",
+      "missed deadline"
+    ],
+    "payment_financial_dispute": [
+      "payment delay",
+      "certificate not paid",
+      "overpayment",
+      "financial claim",
+      "cost overrun",
+      "invoice dispute"
+    ],
+    "land_row_dispute": [
+      "land acquisition",
+      "compensation",
+      "right of way",
+      "eviction",
+      "resettlement"
+    ],
+    "contract_management_failure": [
+      "breach of contract",
+      "scope change",
+      "variation order",
+      "termination",
+      "contract administration"
+    ],
+    "governance_oversight_failure": [
+      "audit query",
+      "oversight",
+      "non compliance",
+      "accountability",
+      "mismanagement"
+    ],
+    "quality_technical_defect": [
+      "substandard",
+      "defect",
+      "poor quality",
+      "collapsed",
+      "rework"
+    ]
+  },
+  "semantic_prototypes": {
+    "procurement_irregularity": [
+      "The contract was awarded without competitive tendering.",
+      "Investigators alleged irregularities in bid evaluation."
+    ],
+    "delay_time_overrun": [
+      "The road project is far behind schedule.",
+      "Completion dates were repeatedly extended due to delays."
+    ],
+    "payment_financial_dispute": [
+      "The contractor reported unpaid certificates and financing stress.",
+      "Auditors flagged overpayments and disputed invoices."
+    ],
+    "land_row_dispute": [
+      "Communities protested compensation for land acquisition.",
+      "Right-of-way disputes halted project works."
+    ],
+    "contract_management_failure": [
+      "Frequent variation orders triggered contractual conflict.",
+      "Poor contract administration escalated the dispute."
+    ],
+    "governance_oversight_failure": [
+      "Oversight agencies cited weak supervision and accountability gaps.",
+      "Governance failures contributed to implementation conflict."
+    ],
+    "quality_technical_defect": [
+      "Engineers reported substandard works and technical defects.",
+      "The completed section failed quality standards."
+    ]
+  }
+}
