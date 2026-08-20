@@ -1,0 +1,4 @@
+table,row_variable,col_variable,n,n_rows,n_cols,chi2,df,p_value,cramers_v,v_interpretation
+driver_x_sector,main_driver,sector,1825,7,6,39.66136086227138,30,0.1115914466263344,0.06592761565121552,negligible (no meaningful association)
+driver_x_region,main_driver,region,2053,7,8,65.94859763984434,42,0.010569941280927173,0.0731699372520844,negligible (no meaningful association)
+actor_type_x_driver,actor_type,main_driver,3743,10,7,172.27861900816828,54,2.8369954458428506e-14,0.08758508426580253,negligible (no meaningful association)

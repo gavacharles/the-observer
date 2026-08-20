@@ -190,13 +190,15 @@ A tripartite actor–driver–region table was constructed by matching actor hit
 
 ### 3.6 Correlation Analysis
 
-Association between categorical variables—dispute driver, sector, region, and actor type—was quantified using Cramér's V, computed from chi-squared statistics on cross-tabulations. Cramér's V is bounded between 0 (no association) and 1 (perfect association). For binary contingency tables the formula is:
+Association between categorical variables—dispute driver, sector, region, and actor type—was assessed in two stages. First, an omnibus chi-square test of independence was conducted on each full cross-tabulation, with effect size reported as one table-level Cramér's $V$ computed from the chi-square statistic:
 
 $$
 V = \sqrt{\frac{\chi^2}{n \cdot (k-1)}},
 $$
 
-where $n$ is the total count and $k$ is the minimum of the number of rows and columns in the contingency table. Dispute category co-occurrence within articles was visualised as a symmetric count matrix.
+where $n$ is the total count and $k = \min(r,c)$. Cramér's $V \in [0,1]$, with $V=0$ indicating independence. Following Cohen's guidance for nominal associations, values below approximately 0.10 were interpreted as negligible regardless of statistical significance.
+
+Second, because Cramér's $V$ is a table-level measure and does not decompose to individual cells, cell-level departures from independence were identified using adjusted residuals from the chi-square model. Cells with $|z| > 1.96$ were treated as significant at $\alpha = 0.05$. This replaces the incorrect practice of reporting Cramér's $V$ for individual driver-sector pairs. Dispute category co-occurrence within articles was additionally visualised as a symmetric count matrix.
 
 ### 3.7 Validation Strategy
 
@@ -340,6 +342,8 @@ Kampala is the dominant location (949 mentions), reflecting both the geographic 
 
 Northern and Eastern regions maintain persistent reporting presence, anchored by Karuma dam, the Northern corridor road network, and EACOP pipeline coverage (South Sudan, Tanzania cross-border references). Cross-border mentions are substantial, reflecting the regional infrastructure integration agenda (SGR, EACOP, Northern Corridor) that connects Ugandan infrastructure policy to neighbouring economies. This spatial pattern suggests that The Observer's infrastructure coverage is not solely metropolitan; it follows major national investment corridors.
 
+For the omnibus Driver × Region table, the independence test was statistically significant ($\chi^2(42)=65.95$, $p=0.0106$), but effect size was negligible ($V=0.073$), so the substantive interpretation is an absence of meaningful association. Adjusted-residual diagnostics identified six cells with $|z|>1.96$: Contract Management × Cross-border ($z=3.278$), Quality × Northern ($z=3.104$), Payment × Central ($z=-2.452$), Payment × Eastern ($z=2.299$), Land/RoW × Western ($z=2.175$), and Governance × Western ($z=-2.091$).
+
 #### 4.4.2 Sector Distribution
 
 Roads/Transport is the top sector for dispute reporting, appearing in the most articles followed by Energy, Buildings/Housing, and Land/Urban. The sector-driver crosstabulation (Table 6) shows that Roads/Transport generates the highest counts of Delay (80) and Land/RoW (436) disputes, consistent with the spatial footprint and community interaction of road corridor projects. Energy articles are strongly associated with Land/RoW (323) and Delay (52), reflecting hydropower and pipeline land acquisition.
@@ -355,7 +359,7 @@ Roads/Transport is the top sector for dispute reporting, appearing in the most a
 | Water/Sanitation | 93 | 11 | 5 | 9 | 3 | 3 | 2 |
 | Oil/Gas | 26 | 2 | 3 | 1 | 1 | 0 | 1 |
 
-Cramér's V analysis reveals the strongest associations in the data: Land/RoW disputes have their highest sector association with Buildings/Housing (V=0.054) and Energy (V=0.046), while Contract Management Failure associates most strongly with Roads/Transport (V=0.052). Payment disputes show strongest sector associations with Energy (V=0.047). These associations are modest in absolute terms (Cramér's V below 0.08 throughout), reflecting the broad cross-sector relevance of each dispute type.
+For Driver × Sector, the omnibus test was not significant ($\chi^2(30)=39.66$, $p=0.1116$), with negligible effect size ($V=0.066$), indicating no meaningful association at table level. Only two cells exceeded the adjusted-residual threshold: Contract Management × Land/Urban ($z=2.776$, over-represented) and Land/RoW × Buildings/Housing ($z=-2.798$, under-represented).
 
 ### 4.5 Actor Analysis and Network Structure (RQ4)
 
@@ -409,13 +413,25 @@ The strongest co-occurrence edges are Court–Government (619), Government–Par
 
 ### 4.6 Correlations Among Dispute Types, Actors, Sectors, and Regions (RQ5)
 
+**Table 9. Omnibus Association Tests (Chi-square and Cramér's V)**
+
+| Cross-tabulation | $\chi^2$ | df | p-value | Cramér's $V$ | Interpretation |
+|------------------|----------:|---:|--------:|-------------:|----------------|
+| Driver × Sector | 39.66 | 30 | 0.1116 | 0.066 | Negligible (no meaningful association) |
+| Driver × Region | 65.95 | 42 | 0.0106 | 0.073 | Negligible (no meaningful association) |
+| Actor Type × Driver | 172.28 | 54 | $2.84 \times 10^{-14}$ | 0.088 | Negligible (no meaningful association) |
+
+Although two omnibus tests are statistically significant, all $V$ values are below 0.10; therefore, none can be interpreted as a strong association.
+
 #### 4.6.1 Dispute Category Co-occurrence
 
 The dispute co-occurrence matrix reveals that Land/RoW Dispute and Delay/Time Overrun is the most frequently co-occurring pair within articles, appearing together in the largest number of articles. This pairing is substantively meaningful: road and pipeline corridor projects that generate land acquisition disputes also frequently generate delay disputes, because right-of-way clearance delays are a leading cause of construction schedule overrun in Uganda. The second-highest co-occurrence pair involves Land/RoW and Procurement Irregularity, reflecting cases where land acquisition processes are themselves alleged to involve fraudulent valuation, double compensation, or favouritism.
 
 #### 4.6.2 Actor-Type × Driver Associations
 
-The actor-type by driver heatmap shows that State Executive actors co-occur most frequently with Land/RoW dispute articles, consistent with the government's role as land acquirer and compensation authority. Infrastructure Agencies (UNRA, NWSC) concentrate in Delay and Quality categories. Oversight Bodies (IGG, PPDA, URA) are most strongly associated with Procurement Irregularity and Governance Failure. International/Donor actors (World Bank) appear predominantly in Land/RoW and Delay articles, reflecting their financing role in large road and hydropower projects.
+The omnibus Actor Type × Driver test is statistically significant ($\chi^2(54)=172.28$, $p=2.84\times10^{-14}$), but with negligible effect size ($V=0.088$), so the table-level conclusion remains absence of meaningful association.
+
+Adjusted-residual cells with $|z|>1.96$ were: Private/Commercial × Land/RoW ($z=4.959$), Oversight Body × Procurement ($z=4.707$), International/Donor × Delay ($z=4.495$), Judiciary × Contract ($z=3.942$), Oversight Body × Payment ($z=2.878$), Infrastructure Agency × Quality ($z=2.849$), Judiciary × Quality ($z=-2.845$), Oversight Body × Land/RoW ($z=-2.756$), Utility/Infrastructure × Delay ($z=2.660$), International/Donor × Quality ($z=2.460$), Private/Commercial × Delay ($z=-2.435$), International/Donor × Land/RoW ($z=-2.281$), International/Donor × Governance ($z=-2.175$), Oversight Body × Delay ($z=-2.132$), Judiciary × Delay ($z=-2.067$), and Coercive State × Land/RoW ($z=2.017$).
 
 #### 4.6.3 Top-Actor × Driver Association
 

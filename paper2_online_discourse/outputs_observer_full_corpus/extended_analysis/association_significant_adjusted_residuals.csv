@@ -1,0 +1,25 @@
+table,row_level,col_level,observed,expected,adjusted_residual,direction
+actor_type_x_driver,Private / Commercial,land_row_dispute,68,49.222548757681004,4.959146378679496,over-represented
+actor_type_x_driver,Oversight Body,procurement_irregularity,29,13.024312049158429,4.70663913124252,over-represented
+actor_type_x_driver,International / Donor,delay_time_overrun,24,10.429334758215335,4.494837293098612,over-represented
+actor_type_x_driver,Judiciary,contract_management_failure,33,17.861608335559712,3.9417546594504578,over-represented
+actor_type_x_driver,Oversight Body,payment_financial_dispute,7,2.552765161635052,2.8778238469296826,over-represented
+actor_type_x_driver,Infrastructure Agency,quality_technical_defect,14,6.858135185679936,2.849336619012734,over-represented
+actor_type_x_driver,Judiciary,quality_technical_defect,10,22.107400480897677,-2.8451050106520785,under-represented
+actor_type_x_driver,Oversight Body,land_row_dispute,120,137.11995725353995,-2.7562799976513794,under-represented
+actor_type_x_driver,Utility / Infrastructure,delay_time_overrun,26,16.09965268501202,2.659806296982219,over-represented
+actor_type_x_driver,International / Donor,quality_technical_defect,9,4.155223083088432,2.4602406112427158,over-represented
+actor_type_x_driver,Private / Commercial,delay_time_overrun,1,7.087897408495859,-2.4349496381161706,under-represented
+actor_type_x_driver,International / Donor,land_row_dispute,62,72.42746460058777,-2.2805478487776605,under-represented
+actor_type_x_driver,International / Donor,governance_oversight_failure,0,4.402885386053968,-2.174775447574031,under-represented
+actor_type_x_driver,Oversight Body,delay_time_overrun,11,19.74485706652418,-2.1321892345088833,under-represented
+actor_type_x_driver,Judiciary,delay_time_overrun,42,55.48811114079615,-2.0673193397679444,under-represented
+actor_type_x_driver,Coercive State,land_row_dispute,329,310.8052364413572,2.0171690135338936,over-represented
+driver_x_region,contract_management_failure,Cross-border,13,5.6751095957135895,3.2776943211675325,over-represented
+driver_x_region,quality_technical_defect,Northern,15,7.188504627374574,3.1036123144627776,over-represented
+driver_x_region,payment_financial_dispute,Central,10,15.867023867510959,-2.451853175858503,under-represented
+driver_x_region,payment_financial_dispute,Eastern,6,2.5450560155869457,2.2991476030674414,over-represented
+driver_x_region,land_row_dispute,Western,84,74.10862152946908,2.174695499214283,over-represented
+driver_x_region,governance_oversight_failure,Western,0,3.989283974671213,-2.0905396035381583,under-represented
+driver_x_sector,land_row_dispute,Buildings/Housing,269,291.6054794520548,-2.797661869577811,under-represented
+driver_x_sector,contract_management_failure,Land/Urban,11,5.141917808219178,2.7763632231360025,over-represented

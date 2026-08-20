@@ -142,6 +142,68 @@ def cramers_v(a, b):
     r, c = ct.shape
     return float(np.sqrt(chi2 / (n * (min(r, c) - 1)))) if min(r, c) > 1 else 0.0
 
+
+def interpret_cramers_v(v: float) -> str:
+    """Cohen-style qualitative interpretation."""
+    if np.isnan(v):
+        return "undefined"
+    if v < 0.10:
+        return "negligible (no meaningful association)"
+    if v < 0.30:
+        return "small"
+    if v < 0.50:
+        return "moderate"
+    return "large"
+
+
+def association_test(ct: pd.DataFrame, table_name: str, row_var: str, col_var: str):
+    """Omnibus chi-square + table-level Cramér's V + adjusted residuals."""
+    chi2, p, df, expected = chi2_contingency(ct, correction=False)
+    n = int(ct.values.sum())
+    r, c = ct.shape
+    v = float(np.sqrt(chi2 / (n * (min(r, c) - 1)))) if min(r, c) > 1 else float("nan")
+
+    obs = ct.values.astype(float)
+    row_prop = obs.sum(axis=1, keepdims=True) / n
+    col_prop = obs.sum(axis=0, keepdims=True) / n
+    denom = np.sqrt(expected * (1 - row_prop) * (1 - col_prop))
+    with np.errstate(divide="ignore", invalid="ignore"):
+        adj = (obs - expected) / denom
+    adj = np.where(np.isfinite(adj), adj, 0.0)
+
+    adj_df = pd.DataFrame(adj, index=ct.index, columns=ct.columns)
+
+    sig_rows = []
+    for i, rname in enumerate(ct.index):
+        for j, cname in enumerate(ct.columns):
+            z = float(adj[i, j])
+            if abs(z) > 1.96:
+                sig_rows.append({
+                    "table": table_name,
+                    "row_level": rname,
+                    "col_level": cname,
+                    "observed": int(ct.iloc[i, j]),
+                    "expected": float(expected[i, j]),
+                    "adjusted_residual": z,
+                    "direction": "over-represented" if z > 0 else "under-represented",
+                })
+
+    summary = {
+        "table": table_name,
+        "row_variable": row_var,
+        "col_variable": col_var,
+        "n": n,
+        "n_rows": int(r),
+        "n_cols": int(c),
+        "chi2": float(chi2),
+        "df": int(df),
+        "p_value": float(p),
+        "cramers_v": v,
+        "v_interpretation": interpret_cramers_v(v),
+    }
+    sig_df = pd.DataFrame(sig_rows)
+    return summary, sig_df, adj_df
+
 def save(fig, name):
     fig.tight_layout()
     fig.savefig(FIG / name, dpi=DPI, bbox_inches="tight")
@@ -231,74 +293,87 @@ def main():
     plt.xticks(rotation=35, ha="right")
     save(fig, "ext_figure_01_dispute_cooccurrence_heatmap.png")
 
-    # ── B. Cramér's V correlation matrices ──────────────────────────────────
-    print("Cramér's V matrices …")
+    # ── B. Omnibus association analysis + adjusted residuals ────────────────
+    print("Association analysis (chi-square, Cramér's V, adjusted residuals) …")
     arts_clean = arts.dropna(subset=["main_driver", "sector", "region"]).copy()
     arts_clean = arts_clean[arts_clean["region"] != "Unknown"]
 
-    def cramers_matrix(df, col_a, col_b, labels_a, labels_b):
-        rows = []
-        for a in labels_a:
-            row = []
-            for b in labels_b:
-                sub_a = (df[col_a] == a).astype(int)
-                sub_b = (df[col_b] == b).astype(int)
-                try:
-                    v = cramers_v(df[col_a], df[col_b])
-                except Exception:
-                    v = 0.0
-                row.append(v)
-            rows.append(row)
-        return pd.DataFrame(rows, index=labels_a, columns=labels_b)
+    # Cross-tab 1: driver × sector (exclude unlabeled "Other" sector)
+    arts_sector = arts_clean[arts_clean["sector"] != "Other"].copy()
+    ct_driver_sector = pd.crosstab(arts_sector["main_driver"], arts_sector["sector"])
 
-    # Driver × Region
-    regions = [r for r in arts_clean["region"].unique() if r != "Unknown"]
-    drivers = sorted(arts_clean["main_driver"].dropna().unique())
-    dr_matrix = pd.DataFrame(index=[NICE_NAMES.get(d, d) for d in drivers], columns=regions, dtype=float)
-    for d in drivers:
-        for r in regions:
-            sub = arts_clean.copy()
-            sub["d_flag"] = (sub["main_driver"] == d).astype(int)
-            sub["r_flag"] = (sub["region"] == r).astype(int)
-            ct = pd.crosstab(sub["d_flag"], sub["r_flag"])
-            try:
-                chi2 = chi2_contingency(ct, correction=False)[0]
-                n = ct.values.sum()
-                v = float(np.sqrt(chi2 / n)) if n > 0 else 0.0
-            except Exception:
-                v = 0.0
-            dr_matrix.loc[NICE_NAMES.get(d, d), r] = round(v, 3)
-    dr_matrix.to_csv(EXTOUT / "cramers_driver_region.csv")
+    # Cross-tab 2: driver × region
+    ct_driver_region = pd.crosstab(arts_clean["main_driver"], arts_clean["region"])
 
-    fig, ax = plt.subplots(figsize=(12, 6))
-    sns.heatmap(dr_matrix.astype(float), annot=True, fmt=".2f", cmap="YlOrRd", ax=ax,
-                linewidths=0.4, linecolor="white", vmin=0, vmax=0.4)
-    ax.set_title("Cramér's V: Dispute Driver × Region Association")
+    # Cross-tab 3: actor type × driver (long-form, one row per actor-type hit)
+    at_rows = []
+    for _, r in arts_clean.iterrows():
+        for at in r["actor_type_hits"]:
+            if at != "Other":
+                at_rows.append({"actor_type": at, "main_driver": r["main_driver"]})
+    at_df_long = pd.DataFrame(at_rows)
+    ct_actor_driver = pd.crosstab(at_df_long["actor_type"], at_df_long["main_driver"])
+
+    omnibus_rows = []
+    sig_all = []
+
+    sum_ds, sig_ds, adj_ds = association_test(
+        ct_driver_sector,
+        "driver_x_sector",
+        "main_driver",
+        "sector",
+    )
+    sum_dr, sig_dr, adj_dr = association_test(
+        ct_driver_region,
+        "driver_x_region",
+        "main_driver",
+        "region",
+    )
+    sum_ad, sig_ad, adj_ad = association_test(
+        ct_actor_driver,
+        "actor_type_x_driver",
+        "actor_type",
+        "main_driver",
+    )
+
+    omnibus_rows.extend([sum_ds, sum_dr, sum_ad])
+    for sdf in [sig_ds, sig_dr, sig_ad]:
+        if not sdf.empty:
+            sig_all.append(sdf)
+
+    omnibus_df = pd.DataFrame(omnibus_rows)
+    omnibus_df.to_csv(EXTOUT / "association_omnibus_tests.csv", index=False)
+
+    if sig_all:
+        sig_df = pd.concat(sig_all, ignore_index=True)
+        sig_df = sig_df.sort_values(["table", "adjusted_residual"], key=np.abs, ascending=False)
+    else:
+        sig_df = pd.DataFrame(columns=[
+            "table", "row_level", "col_level", "observed", "expected",
+            "adjusted_residual", "direction"
+        ])
+    sig_df.to_csv(EXTOUT / "association_significant_adjusted_residuals.csv", index=False)
+
+    # Keep compatibility outputs under previous filenames (now table-level summaries)
+    omnibus_df[omnibus_df["table"] == "driver_x_region"].to_csv(EXTOUT / "cramers_driver_region.csv", index=False)
+    omnibus_df[omnibus_df["table"] == "driver_x_sector"].to_csv(EXTOUT / "cramers_driver_sector.csv", index=False)
+
+    # Visualize adjusted residuals instead of incorrect per-cell Cramér's V
+    fig, ax = plt.subplots(figsize=(12, 6.5))
+    dr_plot = adj_dr.copy()
+    dr_plot.index = [NICE_NAMES.get(c, c) for c in dr_plot.index]
+    sns.heatmap(dr_plot, annot=True, fmt=".2f", cmap="coolwarm", center=0, ax=ax,
+                linewidths=0.4, linecolor="white")
+    ax.set_title("Adjusted Residuals: Dispute Driver × Region")
     plt.xticks(rotation=35, ha="right")
     save(fig, "ext_figure_02_cramers_driver_region.png")
 
-    # Driver × Sector
-    sectors = sorted(arts_clean["sector"].unique())
-    ds_matrix = pd.DataFrame(index=[NICE_NAMES.get(d, d) for d in drivers], columns=sectors, dtype=float)
-    for d in drivers:
-        for s in sectors:
-            sub = arts_clean.copy()
-            sub["d_flag"] = (sub["main_driver"] == d).astype(int)
-            sub["s_flag"] = (sub["sector"] == s).astype(int)
-            ct = pd.crosstab(sub["d_flag"], sub["s_flag"])
-            try:
-                chi2 = chi2_contingency(ct, correction=False)[0]
-                n = ct.values.sum()
-                v = float(np.sqrt(chi2 / n)) if n > 0 else 0.0
-            except Exception:
-                v = 0.0
-            ds_matrix.loc[NICE_NAMES.get(d, d), s] = round(v, 3)
-    ds_matrix.to_csv(EXTOUT / "cramers_driver_sector.csv")
-
-    fig, ax = plt.subplots(figsize=(13, 6))
-    sns.heatmap(ds_matrix.astype(float), annot=True, fmt=".2f", cmap="YlOrRd", ax=ax,
-                linewidths=0.4, linecolor="white", vmin=0, vmax=0.4)
-    ax.set_title("Cramér's V: Dispute Driver × Sector Association")
+    fig, ax = plt.subplots(figsize=(13, 6.5))
+    ds_plot = adj_ds.copy()
+    ds_plot.index = [NICE_NAMES.get(c, c) for c in ds_plot.index]
+    sns.heatmap(ds_plot, annot=True, fmt=".2f", cmap="coolwarm", center=0, ax=ax,
+                linewidths=0.4, linecolor="white")
+    ax.set_title("Adjusted Residuals: Dispute Driver × Sector")
     plt.xticks(rotation=35, ha="right")
     save(fig, "ext_figure_03_cramers_driver_sector.png")
 
@@ -405,7 +480,7 @@ def main():
 
     # ── E. Sector distribution ──────────────────────────────────────────────
     print("Sector analysis …")
-    sec_counts = arts_clean["sector"].value_counts()
+    sec_counts = arts_sector["sector"].value_counts()
     fig, ax = plt.subplots(figsize=(9.5, 5.5))
     sec_counts.sort_values().plot(kind="barh", ax=ax, color="#76b7b2")
     ax.set_title("Articles by Infrastructure Sector")
@@ -413,7 +488,7 @@ def main():
     save(fig, "ext_figure_08_sector_distribution.png")
 
     # Sector × driver heatmap (counts)
-    sec_driver = pd.crosstab(arts_clean["sector"], arts_clean["main_driver"])
+    sec_driver = pd.crosstab(arts_sector["sector"], arts_sector["main_driver"])
     sec_driver.columns = [NICE_NAMES.get(c, c) for c in sec_driver.columns]
     sec_driver.to_csv(EXTOUT / "sector_driver_crosstab.csv")
     fig, ax = plt.subplots(figsize=(14, 6))
@@ -440,13 +515,8 @@ def main():
     save(fig, "ext_figure_10_actor_type_distribution.png")
 
     # Actor-type × driver heatmap
-    rows_at = []
-    for _, r in arts_clean.iterrows():
-        for at in r["actor_type_hits"]:
-            rows_at.append({"actor_type": at, "main_driver": r["main_driver"]})
-    at_df = pd.DataFrame(rows_at)
-    if not at_df.empty:
-        at_driver = pd.crosstab(at_df["actor_type"], at_df["main_driver"])
+    if not at_df_long.empty:
+        at_driver = pd.crosstab(at_df_long["actor_type"], at_df_long["main_driver"])
         at_driver.columns = [NICE_NAMES.get(c, c) for c in at_driver.columns]
         at_driver.to_csv(EXTOUT / "actor_type_driver_crosstab.csv")
         fig, ax = plt.subplots(figsize=(14, 7))
