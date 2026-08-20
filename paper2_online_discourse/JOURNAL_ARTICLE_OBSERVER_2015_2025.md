@@ -202,7 +202,24 @@ Second, because Cramér's $V$ is a table-level measure and does not decompose to
 
 ### 3.7 Validation Strategy
 
-Classification quality was validated on 5,933 higher-confidence pseudo-labelled sentences (`confidence ≥ 0.55`) held out as a test set. Model comparison covered five architectures: full TF-IDF + LinearSVC (production model), classical factor analysis, LSA 250-component + LinearSVC, LSA 200-component + Logistic Regression, and NMF 120-component + Logistic Regression. Cross-validation used five folds with stratified sampling. Precision, recall, and macro-F1 were reported at class and aggregate levels.
+#### 3.7.1 Gold-Standard Annotation
+
+Weak supervision generates training labels from keyword dictionaries. Evaluating a classifier trained on such labels against held-out pseudo-labels primarily measures fidelity to the dictionary rather than substantive category validity. To address this circularity, a manually annotated gold standard was instantiated.
+
+A stratified random sample was drawn from the relevant-sentence pool, stratified by predicted category. The executed sample size is **$n=700$ sentences** (100 per category; minimum threshold satisfied for all seven categories). Annotation packs were generated as blinded coder templates (without model predictions), with an adjudication template and an unblinded key maintained separately.
+
+Two independent coders are to annotate against the written coding protocol (Appendix B), blind to model outputs, followed by third-coder adjudication for disagreements. The reporting fields required for final insertion are:
+
+- **Cohen's $\kappa$ (overall):** [PENDING manual coding completion]
+- **Cohen's $\kappa$ by category (one-vs-rest):** [PENDING manual coding completion]
+- **Number of adjudicated disagreements:** [PENDING manual coding completion]
+- **Pseudo-label vs gold-standard agreement (accuracy and $\kappa$):** [PENDING manual coding completion]
+
+All metrics above are produced by the gold-standard evaluation pipeline after coder files are completed.
+
+#### 3.7.2 Pseudo-Label Benchmark (Diagnostic Only)
+
+For model-family comparison only (not substantive validity), classification was benchmarked on 5,933 higher-confidence pseudo-labelled sentences (`confidence ≥ 0.55`). Model comparison covered five architectures: full TF-IDF + LinearSVC (production model), classical factor analysis, LSA 250-component + LinearSVC, LSA 200-component + Logistic Regression, and NMF 120-component + Logistic Regression. Cross-validation used five folds with stratified sampling. Precision, recall, and macro-F1 were reported as a diagnostic of separability under the weak-label regime.
 
 ### 3.8 Limitations
 
@@ -439,7 +456,9 @@ The tripartite actor-by-driver analysis shows Government co-occurring across all
 
 ### 4.7 Classification Performance and Methodological Validation
 
-The full TF-IDF + LinearSVC model is the strongest overall classifier. Table 8 summarises performance across all tested architectures.
+Table 8 reports pseudo-label benchmark results (diagnostic model-family comparison only). These values should not be interpreted as gold-standard validity estimates. Final validity claims are to be based on the manually coded gold-standard sample described in Section 3.7.1.
+
+The full TF-IDF + LinearSVC model is the strongest overall classifier under the pseudo-label benchmark.
 
 **Table 8. Classification Model Comparison**
 

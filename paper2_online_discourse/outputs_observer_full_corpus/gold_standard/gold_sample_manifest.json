@@ -1,0 +1,30 @@
+{
+  "seed": 42,
+  "target_per_category": 100,
+  "final_sample_size": 700,
+  "categories": [
+    "contract_management_failure",
+    "delay_time_overrun",
+    "governance_oversight_failure",
+    "land_row_dispute",
+    "payment_financial_dispute",
+    "procurement_irregularity",
+    "quality_technical_defect"
+  ],
+  "sample_counts": {
+    "contract_management_failure": 100,
+    "delay_time_overrun": 100,
+    "governance_oversight_failure": 100,
+    "land_row_dispute": 100,
+    "payment_financial_dispute": 100,
+    "procurement_irregularity": 100,
+    "quality_technical_defect": 100
+  },
+  "files": {
+    "key": "gold_sample_key.csv",
+    "coder1": "gold_sample_coder1_template.csv",
+    "coder2": "gold_sample_coder2_template.csv",
+    "adjudication": "gold_sample_adjudication_template.csv"
+  },
+  "note": "Coder templates are blinded to model predictions."
+}
