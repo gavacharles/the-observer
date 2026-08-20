@@ -1,0 +1,19 @@
+{
+  "audit": "land_row_dispute_construction_nexus_precision",
+  "sample_size": 200,
+  "random_state": 42,
+  "true_construction_nexus": 145,
+  "precision_estimate": 0.725,
+  "ci_95_wilson": [
+    0.6593153404748534,
+    0.7822039568619022
+  ],
+  "classifier_precision_land_row_dispute": 0.9510869565217391,
+  "headline_land_share_raw": 0.626,
+  "headline_land_share_adjusted_point": 0.45385,
+  "headline_land_share_adjusted_ci_95": [
+    0.41273140313725826,
+    0.4896596769955508
+  ],
+  "interpretation": "If precision is materially below classifier precision, report adjusted range alongside raw 62.6% headline share."
+}
