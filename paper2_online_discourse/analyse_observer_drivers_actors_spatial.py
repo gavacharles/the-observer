@@ -120,6 +120,32 @@ def classify_trend(slope, pvalue):
     return "stable/mixed"
 
 
+def holm_bonferroni(pvalues: np.ndarray) -> np.ndarray:
+    """Holm-Bonferroni adjusted p-values."""
+    pvalues = np.asarray(pvalues, dtype=float)
+    m = len(pvalues)
+    order = np.argsort(pvalues)
+    adjusted = np.empty(m, dtype=float)
+
+    for rank, idx in enumerate(order, start=1):
+        adjusted[idx] = min(1.0, (m - rank + 1) * pvalues[idx])
+
+    monotone = adjusted[order].copy()
+    for i in range(1, m):
+        if monotone[i] < monotone[i - 1]:
+            monotone[i] = monotone[i - 1]
+    adjusted[order] = monotone
+    return adjusted
+
+
+def durbin_watson(residuals: np.ndarray) -> float:
+    den = float(np.sum(np.square(residuals)))
+    if den <= 0:
+        return float("nan")
+    num = float(np.sum(np.square(np.diff(residuals))))
+    return num / den
+
+
 def main():
     sent = pd.read_csv(BASE / "sentences_classified.csv")
     arts = pd.read_csv(BASE / "articles_relevant.csv")
@@ -135,25 +161,58 @@ def main():
     )
     yearly_driver.to_csv(OUT / "driver_trends_yearly_2016_2025.csv")
 
+    # Normalize by yearly publication volume from sitemap:
+    # R(c, y) = 1000 * N(c, y) / A(y)
+    all_urls = pd.read_csv(BASE / "all_sitemap_urls.csv")
+    all_urls["year"] = pd.to_datetime(all_urls["date"], errors="coerce").dt.year
+    article_volume = (
+        all_urls[(all_urls["year"] >= 2016) & (all_urls["year"] <= 2025)]
+        .groupby("year")
+        .size()
+        .rename("total_articles")
+        .reset_index()
+        .sort_values("year")
+    )
+
+    yearly_driver_norm = yearly_driver.reset_index().merge(article_volume, on="year", how="left")
+    for col in yearly_driver.columns:
+        yearly_driver_norm[col] = 1000.0 * yearly_driver_norm[col] / yearly_driver_norm["total_articles"]
+    yearly_driver_norm.to_csv(OUT / "driver_trends_normalised_per_1000_articles_2016_2025.csv", index=False)
+
     trend_rows = []
+    pvals_raw = []
     x = yearly_driver.index.to_numpy(dtype=float)
     for col in yearly_driver.columns:
-        y = yearly_driver[col].to_numpy(dtype=float)
-        lr = linregress(x, y)
-        first = float(y[0]) if len(y) else np.nan
-        last = float(y[-1]) if len(y) else np.nan
+        y_raw = yearly_driver[col].to_numpy(dtype=float)
+        y_norm = yearly_driver_norm[col].to_numpy(dtype=float)
+        lr = linregress(x, y_norm)
+        y_hat = lr.intercept + lr.slope * x
+        resid = y_norm - y_hat
+        first = float(y_raw[0]) if len(y_raw) else np.nan
+        last = float(y_raw[-1]) if len(y_raw) else np.nan
         pct_change = ((last - first) / first * 100.0) if first not in (0, np.nan) and first != 0 else np.nan
+
+        pvals_raw.append(float(lr.pvalue))
         trend_rows.append({
             "driver": col,
-            "count_total": int(y.sum()),
+            "count_total": int(y_raw.sum()),
             "count_2016": int(first),
             "count_2025": int(last),
-            "slope_per_year": float(lr.slope),
+            "slope_normalised_per_1000_articles_per_year": float(lr.slope),
             "r_value": float(lr.rvalue),
-            "p_value": float(lr.pvalue),
+            "p_value_raw": float(lr.pvalue),
+            "durbin_watson": float(durbin_watson(resid)),
             "pct_change_2016_to_2025": float(pct_change) if not np.isnan(pct_change) else np.nan,
-            "trend_label": classify_trend(lr.slope, lr.pvalue),
         })
+
+    pvals_holm = holm_bonferroni(np.array(pvals_raw, dtype=float))
+    for i, row in enumerate(trend_rows):
+        row["p_value_holm"] = float(pvals_holm[i])
+        row["trend_label"] = classify_trend(
+            row["slope_normalised_per_1000_articles_per_year"],
+            row["p_value_holm"],
+        )
+
     trend_df = pd.DataFrame(trend_rows).sort_values(["count_total"], ascending=False)
     trend_df.to_csv(OUT / "driver_trend_statistics.csv", index=False)
 
@@ -260,11 +319,14 @@ def main():
 
     # 2 driver slopes
     fig, ax = plt.subplots(figsize=(10, 6))
-    tmp = trend_df.sort_values("slope_per_year", ascending=False)
-    colors = ["#2ca02c" if x > 0 else "#d62728" if x < 0 else "#7f7f7f" for x in tmp["slope_per_year"]]
-    ax.barh(tmp["driver"], tmp["slope_per_year"], color=colors)
-    ax.set_title("Direction of Newspaper Driver Change (2016–2025)")
-    ax.set_xlabel("Linear slope per year")
+    tmp = trend_df.sort_values("slope_normalised_per_1000_articles_per_year", ascending=False)
+    colors = [
+        "#2ca02c" if x > 0 else "#d62728" if x < 0 else "#7f7f7f"
+        for x in tmp["slope_normalised_per_1000_articles_per_year"]
+    ]
+    ax.barh(tmp["driver"], tmp["slope_normalised_per_1000_articles_per_year"], color=colors)
+    ax.set_title("Direction of Newspaper Driver Change (Normalised, 2016–2025)")
+    ax.set_xlabel("Linear slope per year (sentences per 1,000 sitemap articles)")
     save(fig, "news_figure_02_driver_slopes.png")
 
     # 3 top actors

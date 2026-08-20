@@ -8,7 +8,7 @@
 
 **Methods:** A full-corpus Natural Language Processing pipeline was applied to The Observer, Uganda's prominent independent investigative newspaper, covering 2016–2025. The pipeline crawled 32,117 sitemap URLs, parsed 5,530 articles, extracted 24,237 risk-bearing sentences from 3,242 relevant articles, and classified them into seven dispute-risk categories using a hybrid TF-IDF + LinearSVC and semantic-prototype fusion architecture. Extended analyses produced an actor co-occurrence network with community detection, sector-driver crosstabulation, Cramér's V association matrices, dispute co-occurrence within articles, temporal trend analysis with key event annotation, and a tripartite actor–driver–region linkage table.
 
-**Results:** Newspaper dispute discourse is dominated by land and right-of-way conflict (62.6% of classified sentences), followed by delay and time overrun (14.5%), procurement irregularity (6.4%), quality and technical defects (6.1%), governance and oversight failure (4.3%), contract management failure (3.7%), and payment and financial disputes (2.4%). All categories end 2025 substantially above 2016 baselines. Actor analysis identifies three distinct communities: a high-politics cluster (Government, Court, Parliament, President, Police), a technical-procurement cluster (UNRA, NWSC, PPDA, KCCA, Ministry of Works), and an energy-infrastructure cluster (UEGCL, Umeme, ERA, World Bank, Ministry of Energy). The top sector for dispute reporting is Roads/Transport. Spatial analysis confirms Central-region concentration (Kampala dominant) with persistent Northern, Eastern, and cross-border reporting. State Executive actors are most frequently co-mentioned with Land/RoW disputes, while Infrastructure Agencies concentrate in Roads and Delay categories.
+**Results:** Newspaper dispute discourse is dominated by land and right-of-way conflict (62.6% of classified sentences), followed by delay and time overrun (14.5%), procurement irregularity (6.4%), quality and technical defects (6.1%), governance and oversight failure (4.3%), contract management failure (3.7%), and payment and financial disputes (2.4%). Publication-volume-normalised temporal modelling shows positive slopes across categories, but only contract-management discourse remains significant after Holm adjustment. Actor analysis identifies three distinct communities: a high-politics cluster (Government, Court, Parliament, President, Police), a technical-procurement cluster (UNRA, NWSC, PPDA, KCCA, Ministry of Works), and an energy-infrastructure cluster (UEGCL, Umeme, ERA, World Bank, Ministry of Energy). The top sector for dispute reporting is Roads/Transport. Spatial analysis confirms Central-region concentration (Kampala dominant) with persistent Northern, Eastern, and cross-border reporting. State Executive actors are most frequently co-mentioned with Land/RoW disputes, while Infrastructure Agencies concentrate in Roads and Delay categories.
 
 **Conclusion:** The Observer corpus yields a rich, internally coherent, and analytically structured picture of construction dispute risk in Uganda. The study demonstrates that newspaper NLP pipelines can produce empirically grounded dispute taxonomies and actor-network intelligence as viable proxies for formal dispute records in data-scarce developing country environments.
 
@@ -170,7 +170,13 @@ Location recognition used regex patterns for thirty named geographic entities. E
 
 #### Module 5: Temporal Analysis
 
-Sentence-level outputs were aggregated monthly and annually. Yearly driver trends were computed as counts per category per year (2016–2025). Linear regression slope and p-value were estimated for each category series to characterise trend direction, with a relaxed threshold of $p < 0.10$ for classification as increasing or decreasing. Temporal series were annotated with key events: the 2016 presidential election (February), the 2020 COVID-19 disruption, and the 2021 presidential election (January). Monthly series were analysed for peak detection using a prominence threshold at the 75th percentile.
+Sentence-level outputs were aggregated monthly and annually. Because newspaper publication volume changed materially across years, annual category counts were normalised by total yearly sitemap output. For each category $c$ and year $y$, the reported rate was:
+
+$$
+R(c,y) = 1000 \times \frac{N(c,y)}{A(y)},
+$$
+
+where $N(c,y)$ is the number of category-$c$ sentences in year $y$ and $A(y)$ is the total number of Observer articles in that year from the sitemap. Ordinary least squares regression was fitted to each normalised annual series ($n=10$ years). Because seven category-wise hypotheses were tested simultaneously, raw p-values were adjusted using the Holm-Bonferroni sequentially rejective procedure. Residual autocorrelation was assessed with the Durbin-Watson statistic. Raw percentage growth from 2016 to 2025 was retained only as descriptive context and not used as inferential evidence. Temporal series were annotated with key events: the 2016 presidential election (February), the 2020 COVID-19 disruption, and the 2021 presidential election (January). Monthly series were analysed for peak detection using a prominence threshold at the 75th percentile.
 
 ### 3.5 Network Analysis
 
@@ -271,7 +277,23 @@ Table 3 presents the full annual time series for each category.
 
 The 2017 spike is large and cross-category, affecting all seven dispute types simultaneously. This reflects the intersection of the Kampala-Entebbe expressway completion controversy, Karuma hydropower dam delays, KCCA urban road disputes, and active parliamentary scrutiny of infrastructure contracts in that period. The COVID-19 period (2020) registers a marked increase in Land/RoW dispute and Delay/Overrun counts relative to 2018–2019, consistent with pandemic disruptions to project delivery and community compensation processes.
 
-Percentage growth from 2016 to 2025 is substantial across all categories: Land/RoW +529%, Delay +760%, Procurement Irregularity +459%, Quality Defect +1,050%, Governance Failure +1,346%, Contract Management +1,463%, and Payment Dispute +422%. These figures confirm a broadening of dispute discourse over the decade, though the statistical linear trend is only significant at $p < 0.10$ for Contract Management Failure (slope 7.73 sentences/year, $p = 0.083$). Other categories show upward end-point movement but non-significant linear trends due to the burst structure centred on 2017.
+Raw end-point growth from 2016 to 2025 remains descriptively large (Land/RoW +529%, Delay +760%, Procurement +459%, Quality +1,050%, Governance +1,346%, Contract +1,463%, Payment +422%), but these percentages are descriptive only because they do not adjust for yearly publication volume.
+
+Inferential results are therefore reported on the normalised series $R(c,y)$. Table 3A shows positive normalised slopes for all categories, but only Contract Management Failure remains statistically significant after Holm adjustment.
+
+**Table 3A. Normalised Annual Trend Statistics (per 1,000 sitemap articles, 2016–2025)**
+
+| Category | Slope | p (raw) | p (Holm) | Durbin-Watson |
+|----------|------:|--------:|---------:|--------------:|
+| Land/RoW Dispute | 6.031 | 0.5609 | 1.0000 | 2.022 |
+| Delay / Time Overrun | 3.537 | 0.1130 | 0.5649 | 1.804 |
+| Procurement Irregularity | 0.678 | 0.6277 | 1.0000 | 2.025 |
+| Quality / Technical Defect | 0.875 | 0.4985 | 1.0000 | 2.289 |
+| Governance / Oversight Failure | 2.687 | 0.0218 | 0.1311 | 1.890 |
+| Contract Management Failure | 2.713 | 0.0055 | 0.0388 | 2.314 |
+| Payment / Financial Dispute | 0.107 | 0.8408 | 1.0000 | 2.561 |
+
+The adjusted inference is that broad dispute discourse intensity is elevated and volatile, while robust linear acceleration is concentrated in contract-management reporting. Durbin-Watson values are near 2 across categories, indicating no strong residual autocorrelation signal in this short annual series.
 
 #### 4.3.2 Monthly Peaks and Structural Features
 
@@ -439,17 +461,11 @@ The classifier comparison resolves a question of practical importance: which mod
 
 ### 5.4 Policy and Governance Implications
 
-The findings support four specific policy directions. First, land acquisition protocols should be treated as the single highest-priority dispute prevention mechanism in Ugandan infrastructure delivery, given the overwhelming dominance of land and right-of-way dispute in the corpus. Second, the temporal evidence—showing that all categories grow from 2016 to 2025, with burst peaks around election cycles and major project milestones—suggests that dispute management capacity should be scaled up in line with the infrastructure investment pipeline rather than treated as a constant overhead. Third, the actor-network finding that oversight bodies (IGG, PPDA) are most strongly associated with procurement and governance disputes supports the case for continued investment in these institutions as front-line dispute detection mechanisms. Fourth, the energy-infrastructure community's linkage to World Bank and international financing actors suggests that donor-funded project dispute management should incorporate community land engagement protocols as a standard requirement.
+The findings support four specific policy directions. First, land acquisition protocols should be treated as the single highest-priority dispute prevention mechanism in Ugandan infrastructure delivery, given the overwhelming dominance of land and right-of-way dispute in the corpus. Second, the temporal evidence—showing episodic multi-category surges, but Holm-robust linear acceleration concentrated in contract-management discourse—suggests that dispute management capacity should be scaled to project-cycle risk windows rather than assumed to rise uniformly across all dispute types. Third, the actor-network finding that oversight bodies (IGG, PPDA) are most strongly associated with procurement and governance disputes supports the case for continued investment in these institutions as front-line dispute detection mechanisms. Fourth, the energy-infrastructure community's linkage to World Bank and international financing actors suggests that donor-funded project dispute management should incorporate community land engagement protocols as a standard requirement.
 
 ### 5.5 Escalation Assessment and Temporal Interpretation
 
-The escalation pattern is best characterised as punctuated intensification rather than monotonic growth. For percentage change $\Delta\%$:
-
-$$
-\Delta\% = \frac{y_{2025} - y_{2016}}{y_{2016}} \times 100,
-$$
-
-all categories show large positive values (minimum +422% for payment dispute, maximum +1,463% for contract management failure). But annual volatility is high, driven by event-specific burst dynamics. Linear regression significance is weak for most categories, which means the appropriate inference is not "steady growth" but "elevated and broadening discourse with event-driven peaks." Dispute visibility in Observer reporting has clearly expanded over the decade, but it is not a smooth trend; it is a volatile but upward-oriented field of public contestation.
+The escalation pattern is best characterised as punctuated intensification rather than monotonic growth. Raw end-point percentage increases provide useful context, but inferential claims are based on the normalised rate series $R(c,y)$. Under this specification, only contract-management discourse shows a Holm-significant positive linear trend, while the remaining categories exhibit positive but statistically fragile slopes under multiple-testing control. Combined with the event-linked spikes and Durbin-Watson values near 2, the appropriate interpretation is not steady uniform growth, but a volatile dispute-reporting regime with selective structural acceleration.
 
 ### 5.6 Threats to Validity
 
@@ -463,7 +479,7 @@ all categories show large positive values (minimum +422% for payment dispute, ma
 
 ## 6. Conclusion
 
-This study demonstrates that newspaper corpora can be transformed into structured, analytically meaningful, and substantively informative construction dispute intelligence. Applied to The Observer over 2016–2025, the NLP pipeline produced a seven-category dispute taxonomy, temporal trend series, actor co-occurrence networks with community structure, spatial distribution analysis, sector associations, and correlation mappings. The core empirical findings are: that land and right-of-way dispute overwhelmingly dominates Ugandan infrastructure dispute discourse; that all dispute categories are more visible in 2025 than in 2016; that the actor network is state-centred and organised into three distinct institutional communities; that Roads/Transport and Energy are the highest-reporting sectors; and that Central Uganda and Kampala concentrate the largest share of spatial coverage.
+This study demonstrates that newspaper corpora can be transformed into structured, analytically meaningful, and substantively informative construction dispute intelligence. Applied to The Observer over 2016–2025, the NLP pipeline produced a seven-category dispute taxonomy, temporal trend series, actor co-occurrence networks with community structure, spatial distribution analysis, sector associations, and correlation mappings. The core empirical findings are: that land and right-of-way dispute overwhelmingly dominates Ugandan infrastructure dispute discourse; that raw category visibility is higher in 2025 than in 2016 but publication-volume-normalised linear acceleration is Holm-robust only for contract-management discourse; that the actor network is state-centred and organised into three distinct institutional communities; that Roads/Transport and Energy are the highest-reporting sectors; and that Central Uganda and Kampala concentrate the largest share of spatial coverage.
 
 These findings establish that newspaper discourse contains a coherent, recoverable structure of construction dispute information. The conjecture advanced in the introduction—that newspapers can serve as viable risk intelligence proxies in data-scarce environments—is supported by the evidence. The Observer corpus is neither a random sample of all construction disputes in Uganda nor a comprehensive formal record. It is a biased but structured and longitudinal signal that captures the high-salience end of the dispute spectrum with sufficient regularity to support taxonomy derivation, trend analysis, actor-network mapping, and sectoral association testing.
 
